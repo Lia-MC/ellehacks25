@@ -1,33 +1,30 @@
 import streamlit as st
 
+st.set_page_config(
+    page_title="Acneeds",
+    page_icon=":heart:",
+    layout="centered",
+    initial_sidebar_state="collapsed"
+)
+
+st.sidebar.title("Menu")
+
 st.title("Home")
 st.divider()
 
 st.write("Welcome!")
 
-skinDisease = "Acne"
+# ONCE DEPLOYED INSERT LINKS AND UNCOMMENT THIS
+# st.link_button("Get started by clicking here!", LINK_TO_4_PROFILE.PY)
+# st.link_button("Comfort and confidence :heart:", LINK_TO_2_QUOTES.PY)
+# st.link_button("Learn more about happy healthy lifestyles!", LINK_TO_3_INFO_HUB.PY)
 
-from google import genai
-
-client = genai.Client(api_key="YOUR_API_KEY")
-
-response = client.models.generate_content(
-    model="gemini-2.0-flash",
-    contents="Explain how AI works",
-)
-
-print(response.text)
-
-
-# DATA INPUT
-# name = st.text_input("Your name:")
-# age = st.text_input("Your age:")
-# skin_conditions = st.text_input("Your skin conditions:")
+# ALTERNATIVE METHOD
+# st.markdown("<a href='#4_Profile'>Get started by clicking here!</a>", unsafe_allow_html=True)
+# st.markdown("<a href='#2_Quotes'>Comfort and confidence</a>", unsafe_allow_html=True)
+# st.markdown("<a href='#3_Info_Hub'>Learn more about happy healthy lifestyles!</a>", unsafe_allow_html=True)
 
 # DATA RETRIEVAL
 # import pandas as pd 
 # data = pd.read_csv("data.csv")
 # st.write(data)
-
-# MULTIPLE PAGES
-# link_button
