@@ -75,6 +75,9 @@ age_input = st.number_input("", min_value=1, max_value=100, value="min", step=1)
 st.markdown("<p class='highlight' style='font-size: 20px;'>Tell us about your diet, skin type, and lifestyle:</p>", unsafe_allow_html=True)
 text_input = st.text_area("")
 
+st.markdown("<p class='highlight' style='font-size: 20px;'>Tell us what type of advice you are seeking (meal plans, skin care routines, etc.):</p>", unsafe_allow_html=True)
+advice_type = st.selectbox("", ["Meal Plans", "Skin Care Routine", "Daily Routines", "Physical Exercise", "All"])
+
 st.markdown("<p class='highlight' style='font-size: 20px;'>Upload a photo of your skin condition:</p>", unsafe_allow_html=True)
 uploaded_file = st.file_uploader("", type=["jpg", "png"])
 
@@ -93,19 +96,36 @@ if st.button("Get Suggestions!"):
 
         st.markdown(f"<div class='highlight' style='font-size: 20px;'>{response.text}</div>",unsafe_allow_html=True)
 
+        if advice_type == "Meal Plans":
+            prompt = f"Provide meal plan recommendations for {gender_input} in the age of {age_input} with these details: {text_input} and {uploaded_file}"
+
+        elif advice_type == "Skin Care Routine":
+            prompt = f"Provide skincare recommendations for {gender_input} in the age of {age_input} with these details: {text_input} and {uploaded_file}"
+        
+        elif advice_type == "Daily Routines":
+            prompt = f"Provide daily routine recommendations for {gender_input} in the age of {age_input} with these details: {text_input} and {uploaded_file}"
+
+        elif advice_type == "Physical Exercise":
+            prompt = f"Provide physical exercise recommendations for {gender_input} in the age of {age_input} with these details: {text_input} and {uploaded_file}"
+
+        else:
+            prompt = f"Provide meal plan, skincare, daily routine, and physical exercise recommendations for {gender_input} in the age of {age_input} with these details: {text_input} and {uploaded_file}"
         # prompt_text_skincare = f"Provide skincare recommendations for {gender_input} in the age of {age_input} with these details: {text_input}"
         # prompt_text_mealplan = f"Provide meal plan recommendations for {gender_input} in the age of {age_input} with these details: {text_input}"
 
         # prompt_condition_skincare = f"Provide skincare recommendations for {gender_input} in the age of {age_input} with these details: {uploaded_file}"
         # prompt_condition_mealplan = f"Provide meal plan recommendations for {gender_input} in the age of {age_input} with these details: {uploaded_file}"
 
-        # model = genai.GenerativeModel("gemini-pro")
+        model = genai.GenerativeModel("gemini-pro")
+        response = model.generate_content(prompt)
+        st.title("Your Personalized Recommendations")
+        st.write(response.text)
+
         # response_text_skincare = model.generate_content(prompt_text_skincare)
         # response_text_mealplan = model.generate_content(prompt_text_mealplan)
         # response_condition_skincare = model.generate_content(prompt_condition_skincare)
         # response_condition_mealplan = model.generate_content(prompt_condition_mealplan)
 
-        # st.title("Your Personalized Recommendations")
         # st.subheader("Skincare Recommendations")
         # st.write(response_text_skincare.text)
         # st.write(response_condition_skincare.text)
