@@ -89,11 +89,10 @@ uploaded_file = st.file_uploader("", type=["jpg", "png"])
 if st.button("Get Suggestions!"):
         
     if text_input and uploaded_file:
-        prompt = f"Provide skincare and meal plan recommendations for {gender_input} in the age of {age_input} with these details: {text_input} and {uploaded_file}"
-
-        model = genai.GenerativeModel("gemini-pro")
-        response = model.generate_content(prompt)
-
+        # prompt = f"Provide skincare and meal plan recommendations for {gender_input} in the age of {age_input} with these details: {text_input} and {uploaded_file}"
+        # model = genai.GenerativeModel("gemini-pro")
+        # response = model.generate_content(prompt)
+        
         st.markdown(f"<div class='highlight' style='font-size: 20px;'>{response.text}</div>",unsafe_allow_html=True)
 
         if advice_type == "Meal Plans":
