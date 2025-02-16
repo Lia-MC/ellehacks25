@@ -66,7 +66,7 @@ if name_input:
     # st.write(f"Welcome, {name_input}!")
 
 st.markdown("<p class='highlight' style='font-size: 20px;'>Select your gender:</p>", unsafe_allow_html=True)
-gender_input = st.selectbox("", ["Male", "Female"])
+gender_input = st.text_input("")
 
 st.markdown("<p class='highlight' style='font-size: 20px;'>Select your age:</p>", unsafe_allow_html=True)
 age_input = st.number_input("", min_value=1, max_value=100, value="min", step=1)
