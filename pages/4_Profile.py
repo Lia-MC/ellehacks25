@@ -8,10 +8,12 @@ load_dotenv()
 secret_key = os.getenv("SECRET_KEY")
 genai.configure(api_key=secret_key)
 
-st.set_page_config(page_title="THE LIFE HACKERS", page_icon="✅", layout="centered")
-st.title("Lifestyle and Skincare Recommendations")
+st.set_page_config(page_title="CUTIS", layout="centered")
+
+st.image("title_art.png", use_column_width=True)
 
 name_input = st.text_input("Enter your name")
+
 if name_input:
     st.write(f"Welcome, {name_input}!")
 
